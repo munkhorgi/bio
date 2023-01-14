@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+/* Home.jsx */
+.home{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header{
+  width: 80vw;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.gybox {
+  display: flex;
+  align-items: center;
+}
+.gybox h2 {
+  transform: translateX(180px);
+}
+.kill {
+  display: flex;
+  text-decoration: none;
+}
+.headerButton{
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF ;
+  width: 183px;
+  height: 44px;
+  background: #02B589;
+  border-radius: 100px;
+  border: 0;
+}
+.main{
+  width: 100vw;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mainInput{
+  width: 35%;
+  height: 41px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.mainBtn{
+  font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #02B589;
+    border: 0;
+    border-radius: 25px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+#mainText{
+  width: 80%;
+  border: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 18px;
+  border-radius: 25px;
+  outline: none;
+  padding: 10px 30px;
+}
+.footer{
+  width: 100vw;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login.jsx */
+
+
+
+/* Signup.jsx */
+.SignMain{
+  width: 100vw;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
