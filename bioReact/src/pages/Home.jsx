@@ -17,6 +17,7 @@ const Home = () => {
         Url: url
       });
       console.log(res)
+      setData(res.data.data.shortUrl)
     } catch (error) {
       console.log(error.message)
     }
@@ -37,7 +38,9 @@ const Home = () => {
         </div>
       </div>
       <div className="main">
+        <Link to={"/"}>
         <img src={boginooLogo} alt={boginooLogo} />
+        </Link>
         <img src={boginooLogoTwo} alt={boginooLogoTwo} />
         <div className="mainInput">
           <input
@@ -49,9 +52,9 @@ const Home = () => {
           <button onClick={getData} className="mainBtn">БОГИНОСГОХ</button>
         </div>
         <br />
-        {/* <div>{setUrl && <Result Url={setUrl} shortUrl={data} />}</div> */}
-        <span>{"Given url:" + url}</span>
-        {/* <span>{"Shortened url: shorturl.at/" + data}</span> */}
+        <div>{setUrl && <Result Url={url} shortUrl={data} />}</div>
+        {/* <span>{"Given url:" + url}</span>
+        <span>{"Shortened url: localhost:3000/" + data}</span> */}
       </div>
       <div className="footer">
         <img src={footer} alt={footer} />

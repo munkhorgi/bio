@@ -1,11 +1,11 @@
-import Url from "../model/url.js";
+import User from "../model/User.js";
 
 
-export const getAllUrl = async (req, res) => {
+export const getAllUser = async (req, res) => {
   try {
-    const url = await Url.find({});
+    const username = await Username.find({});
     res.status(200).send({
-      data: url,
+      data: username,
     });
   } catch (error) {
     res.status(400).send({
@@ -15,13 +15,13 @@ export const getAllUrl = async (req, res) => {
   }
 };
 
-export const createUrl = async (req, res) => {
+export const createUsername = async (req, res) => {
   try {
 
-    const url = await Url.create(req.body)
+    const username = await Username.create(req.body)
     res.status(200).send({
       success: true,
-      data: url,
+      data: username,
     });
   } catch (error) {
     res.status(400).send({
@@ -31,13 +31,13 @@ export const createUrl = async (req, res) => {
   }
 };
 
-export const deleteUrl = async (req, res) => {
+export const deleteUsername = async (req, res) => {
   try {
     const { id } = req.params;
-    const url = await Url.findByIdAndRemove({ _id: id });
+    const username = await Username.findByIdAndRemove({ _id: id });
     res.status(200).send({
       success: true,
-      data: url,
+      data: username,
     });
   } catch (error) {
     res.status(400).send({
@@ -47,14 +47,14 @@ export const deleteUrl = async (req, res) => {
   }
 };
 
-export const findUrl = async (req, res) => {
+export const findUsername = async (req, res) => {
   try {
     const id = req.params.id
-   const url = await Url.findOne({shortUrl : id})
+   const username = await Username.findOne({shortusername : id})
 
     res.status(200).send({
       success: true,
-      data: url,
+      data: username,
     });
   } catch (error) {
     res.status(400).send({

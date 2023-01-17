@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import nanoid from "nanoid"
+import {nanoid} from "nanoid"
 
 
 const UrlSchema = new mongoose.Schema({
     Url:{
         type: String,
-        required:[ true , "Url is required" ]
+        required:[ false , "Url is required" ]
     },
     shortUrl:{
         type: String

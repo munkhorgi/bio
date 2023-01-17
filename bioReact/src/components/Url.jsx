@@ -2,11 +2,13 @@ import { instance } from "../App";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export const Url = () => {
+  const Url = () => {
   const params = useParams();
   const getData = async () => {
-    const res = await instance.get(`/Urls/${params.ShortUrl}`);
-    window.location.replace(res.data.data.Url);
+    const res = await instance.get(`/Url/${params.shortUrl}`);
+    // window.location.replace(res.data.data.Url);
+    window.location.replace(res.data.data.Url)
+    console.log(res, 'ahah')
   };
   useEffect(() => {
     getData();
