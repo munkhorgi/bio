@@ -4,7 +4,8 @@ import Login from "./pages/Login";
 import Forgotpass from "./components/Forgotpass"
 import SignUp from "./pages/SignUp";
 import Url from "./components/Url";
-import axios from "axios"
+import axios from "axios";
+
 
 export const instance = axios.create({
   baseURL: "http://localhost:1000",

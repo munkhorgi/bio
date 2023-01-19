@@ -1,65 +1,19 @@
-import User from "../model/User.js";
 
+import express from "express";
+import {
+  getAllUser,
+  createUser,
+  getUserByObject,
+  deleteUser,
+  getUserById,
+} from "../controller/user.js";
+import { checkTokenMiddleware } from "../middleware/middleware.js";
 
-export const getAllUser = async (req, res) => {
-  try {
-    const username = await Username.find({});
-    res.status(200).send({
-      data: username,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: true,
-      data: error.message,
-    });
-  }
-};
+const userRouter = express.Router();
 
-export const createUsername = async (req, res) => {
-  try {
+userRouter.route("/").get(getAllUser);
+userRouter.route("/signup").post(createUser);
+userRouter.route("/login").post(getUserByObject).post(checkTokenMiddleware);
+userRouter.route("/:id").delete(deleteUser).get(getUserById);
 
-    const username = await Username.create(req.body)
-    res.status(200).send({
-      success: true,
-      data: username,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
-
-export const deleteUsername = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const username = await Username.findByIdAndRemove({ _id: id });
-    res.status(200).send({
-      success: true,
-      data: username,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
-
-export const findUsername = async (req, res) => {
-  try {
-    const id = req.params.id
-   const username = await Username.findOne({shortusername : id})
-
-    res.status(200).send({
-      success: true,
-      data: username,
-    });
-  } catch (error) {
-    res.status(400).send({
-      success: false,
-      data: error.message,
-    });
-  }
-};
+export default userRouter;

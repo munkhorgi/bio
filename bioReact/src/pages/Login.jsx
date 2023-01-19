@@ -2,12 +2,32 @@ import footer from "../assets/footer.png";
 import boginooLogo from "../assets/boginooLogo.png";
 import { Link } from "react-router-dom";
 import "../App.css"
-
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {instance} from "../App"
 
 
 const Login = () => {
+
+  const [pass, setPass] = useState();
+  const [email, setEmail] = useState();
+  const logIn = async () => {
+    try {
+      const res = await instance.post("/User/login", {
+        email: email,
+        pass: pass,
+      });
+      console.log(res.data.data._id);
+      window.location.replace(`/User/${res.data.data._id}`);
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
+  };
+
   return(
     <div className="home">
+       <ToastContainer />
         <div className="header">
         <h2 style={{ color: "#02B589", marginRight: "100px" }}>
             ХЭРХЭН АЖИЛЛАДАЖ ВЭ ?
@@ -27,6 +47,7 @@ const Login = () => {
                 name="email"
                 className="inps"
                 placeholder="name@mail.domain"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <div>
                  Нууц үг
@@ -36,6 +57,7 @@ const Login = () => {
                 name="pass"
                 className="inps"
                 placeholder="••••••••••"
+                onChange={(e) => setPass(e.target.value)}
               />
               <br />
               <input type="checkbox" name="" id="" /> Намайг сана
@@ -49,7 +71,7 @@ const Login = () => {
                 Шинэ хэрэглэгч бол энд дарна уу?
               </Link>
               <br />
-              <button className="headerButton"> НЭВТРЭХ </button>
+              <button className="headerButton" onClick={logIn}> НЭВТРЭХ </button>
             </div>
           
         </div>

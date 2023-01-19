@@ -2,23 +2,31 @@ import boginooLogo from "../assets/boginooLogo.png";
 import footer from "../assets/footer.png"
 import "../App.css"
 import {Link} from 'react-router-dom'
+import { useState } from "react";
+import { toast , ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { instance } from "../App"
+
 const SignUp = () => {
-  // const [password, setPassword] = useState();
-  // const [email, setEmail] = useState();
-  // const SignUp = async () => {
-  //   try {
-  //     await axios.post("http://localhost:8000/users/signup", {
-  //       password: password,
-  //       email: email,
-  //     });
-  //     window.location.replace("/login");
-  //     toast.success("Amjilttai burtguullee");
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
-  // };
+  const [username, setUsername] = useState();
+  const [pass, setPass] = useState();
+  const [email, setEmail] = useState();
+  const signUp = async () => {
+    try {
+      const res = await instance.post("/User/signup", {
+        username: username,
+        pass: pass,
+        email: email,
+      });
+      toast.success("Amjilttai burtguullee");
+    } catch (error) {
+      toast.error("Burtgeltei email baina");
+    }
+  };
+
     return(
         <div className="home">
+          <ToastContainer />
             <div className="header">
                 <h2 style={{ color: "#02B589", marginRight: "100px" }}>
                 ХЭРХЭН АЖИЛЛАДАЖ ВЭ ?
@@ -31,34 +39,37 @@ const SignUp = () => {
                 <h2 style={{color: "#02B589"}}>Бүртүүлэх</h2>
                 <div>
                 <div>
-                    Цахим хаяг
+                Username
                 </div>
+              <input
+                type="text"
+                name="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                className="inps"
+              />
+              <div>
+                Цахим хаяг
+              </div>
               <input
                 type="text"
                 name="email"
                 className="inps"
                 placeholder="name@mail.domain"
-              />
-              <div>
-                 Нууц үг
-              </div>
-              <input
-                type="password"
-                name="pass"
-                className="inps"
-                placeholder="••••••••••"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <div> 
-              Нууц үгээ давтна уу?
+              Нууц үг
               </div>
               <input
                 type="password"
                 name="pass"
                 className="inps"
                 placeholder="••••••••••"
+                onChange={(e) => setPass(e.target.value)}
               />
                 <br/>
-              <button className="headerButton">Бүртүүлэх</button>
+              <button className="headerButton" onClick={signUp}>Бүртүүлэх</button>
             </div>
             </div>
             <div className="footer">
@@ -70,66 +81,3 @@ const SignUp = () => {
 
 export default SignUp;
 
-{/* <div className="header">
-<div className="topHeader">
-<p className="topHeaderShit">Хэрхэн ажилладаг вэ?</p>
-</div>
-<div className="bottomHeader">
-<Link to={"/"}>
-  <img src={Logo} alt="" className="logo" />
-</Link>
-</div>
-<div>
-<p className="headerShit">Бүртгүүлэх</p>
-</div>
-</div>
-<div className="main">
-<div className="input">
-<p className="holder">Цахим хаяг</p>
-<input
-  type="text"
-  className="inputs"
-  placeholder="name@mail.domain"
-  onChange={(e) => setEmail(e.target.value)}
-/>
-<p className="holder">Нууц үг</p>
-<input
-  type="text"
-  className="inputs"
-  placeholder="··········"
-  style={{ fontWeight: "bolder" }}
-  onChange={(e) => setPassword(e.target.value)}
-/>
-<p className="holder">Нууц үгээ давтна уу?</p>
-<input
-  type="text"
-  className="inputs"
-  placeholder="··········"
-  style={{ fontWeight: "bolder" }}
-  onChange={(e) => setPassword(e.target.value)}
-/>
-</div>
-</div>
-<div className="thridMain">
-<div className="help">
-<button className="button" onClick={() => SignUp()}>
-  Бүртгүүлэх
-</button>
-</div>
-</div>
-<div className="footer">
-<div className="texts">
-<p className="secondMainShit" style={{ color: "black" }}>
-  Made with ❤️ by Nest Academy
-</p>
-<p
-  className="secondMainShit"
-  style={{ color: "gray", fontSize: "13px", marginLeft: "60px" }}
->
-  ©boginoo.io 2023
-</p>
-</div>
-</div>
-
-<ToastContainer />
-</> */}

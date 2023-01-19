@@ -7,5 +7,10 @@ export const createTokenMiddleWare = (req , res , next) =>{
   next()
 }
 export const checkTokenMiddleware = (req , res , next ) => {
-    jwt.verify(token , "secret" , (err , result))
-}
+    jwt.verify(token , "secret" , (err , result)=>{
+      if(err){
+        res.status(403).send(err);
+      }
+      return next();
+    });
+};

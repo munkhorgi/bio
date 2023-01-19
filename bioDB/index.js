@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import UrlRouter from "./router/url.js"
 import cors from "cors"
-
+import userRouter from "./router/user.js";
 dotenv.config();
 
 // const myFirstMiddleWare = (req , res , next) =>{
@@ -22,6 +22,7 @@ app.use(express.json());
 
 
 app.use("/Url" ,UrlRouter)
+app.use("/User" , userRouter)
 
 
 app.listen(port, async () => {
