@@ -1,12 +1,11 @@
 import { instance } from "../App";
-import "../Styles/Home.css";
+import "../App.css"
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState ,useEffect } from "react";
 import boginooLogo from "../assets/boginooLogo.png"
 import footer from "../assets/footer.png"
 
-const HomeLogged = () => {
+const SignIn = () => {
   const { id } = useParams();
   const [url, setUrl] = useState();
   const [data, setData] = useState([]);
@@ -26,12 +25,12 @@ const HomeLogged = () => {
     );
   };
 
-  const showShortId = async () => {
+  const showShortUrl = async () => {
     try {
       const res = await instance.post("/Url/createUrl", {
         Url: url,
       });
-      setData(res.data.data.url.shortId);
+      setData(res.data.data.url.shortUrl);
     } catch (error) {
       console.log(error.message);
     }
@@ -42,13 +41,13 @@ const HomeLogged = () => {
     getHistory();
   }, [history]);
   return (
-    <div className="homeContainer">
+    <div className="home">
       <header>
         <br />
         <div>
-          <div className="boginooButton">{name}</div>
+          <div className="headerButton">{name}</div>
           <div
-            className="boginooButton"
+            className="headerButton"
             style={{
               marginTop: 10,
               display: "flex",
@@ -80,7 +79,7 @@ const HomeLogged = () => {
             id="boginooInp"
             onChange={(e) => setUrl(e.target.value)}
           />
-          <button className="boginooButton" onClick={showShortId}>
+          <button className="boginooButton" onClick={showShortUrl}>
             Богиносгох
           </button>
         </div>
@@ -112,4 +111,4 @@ const HomeLogged = () => {
   );
 };
 
-export default HomeLogged;
+export default SignIn;

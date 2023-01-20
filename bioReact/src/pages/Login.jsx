@@ -9,7 +9,6 @@ import {instance} from "../App"
 
 
 const Login = () => {
-
   const [pass, setPass] = useState();
   const [email, setEmail] = useState();
   const logIn = async () => {
